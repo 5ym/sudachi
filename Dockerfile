@@ -44,7 +44,7 @@ ARG DICT_TYPE
 
 LABEL org.opencontainers.image.title="sudachi" \
       org.opencontainers.image.description="Japanese tokenizer: sudachi.rs ${SUDACHI_VERSION} + SudachiDict ${DICT_VERSION}-${DICT_TYPE}" \
-      org.opencontainers.image.source="https://github.com/5ym/mecab" \
+      org.opencontainers.image.source="https://github.com/5ym/sudachi" \
       org.opencontainers.image.licenses="Apache-2.0"
 
 COPY --from=build /usr/local/bin/sudachi /usr/local/bin/sudachi

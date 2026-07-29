@@ -10,13 +10,13 @@
 ## 使い方
 
 ```sh
-docker pull ghcr.io/5ym/mecab:latest
+docker pull ghcr.io/5ym/sudachi:latest
 ```
 
 標準入力から読んで標準出力に書きます。
 
 ```sh
-$ echo "すもももももももものうち。京都大学に行った。" | docker run --rm -i ghcr.io/5ym/mecab
+$ echo "すもももももももものうち。京都大学に行った。" | docker run --rm -i ghcr.io/5ym/sudachi
 すもも  名詞,普通名詞,一般,*,*,*        李
 も      助詞,係助詞,*,*,*,*             も
 もも    名詞,普通名詞,一般,*,*,*        もも
@@ -28,7 +28,7 @@ EOS
 ### 分かち書きだけ欲しいとき
 
 ```sh
-$ echo "外国人参政権について附属機関で議論した" | docker run --rm -i ghcr.io/5ym/mecab -w
+$ echo "外国人参政権について附属機関で議論した" | docker run --rm -i ghcr.io/5ym/sudachi -w
 外国人参政権 に つい て 附属 機関 で 議論 し た
 ```
 
@@ -37,10 +37,10 @@ $ echo "外国人参政権について附属機関で議論した" | docker run 
 Sudachi は 3 段階の分割粒度を選べます。デフォルトは `C`。
 
 ```sh
-$ echo "選挙管理委員会" | docker run --rm -i ghcr.io/5ym/mecab -m A -w
+$ echo "選挙管理委員会" | docker run --rm -i ghcr.io/5ym/sudachi -m A -w
 選挙 管理 委員 会
 
-$ echo "選挙管理委員会" | docker run --rm -i ghcr.io/5ym/mecab -m C -w
+$ echo "選挙管理委員会" | docker run --rm -i ghcr.io/5ym/sudachi -m C -w
 選挙管理委員会
 ```
 
@@ -49,7 +49,7 @@ $ echo "選挙管理委員会" | docker run --rm -i ghcr.io/5ym/mecab -m C -w
 `-a` で全フィールド（正規化形・辞書形・読み・同義語グループ ID）を出力します。
 
 ```sh
-$ echo "ふとんがふっとんだ" | docker run --rm -i ghcr.io/5ym/mecab -a
+$ echo "ふとんがふっとんだ" | docker run --rm -i ghcr.io/5ym/sudachi -a
 ふとん  名詞,普通名詞,一般,*,*,*        布団    ふとん  フトン  0       [13556]
 が      助詞,格助詞,*,*,*,*             が      が      ガ      0       []
 ふっとん 動詞,一般,*,*,五段-バ行,連用形-撥音便  吹き飛ぶ ふっとぶ フットン 0    []
@@ -60,13 +60,13 @@ EOS
 ### ファイルを渡す
 
 ```sh
-docker run --rm -v "$PWD:/work" -w /work ghcr.io/5ym/mecab input.txt -o output.txt
+docker run --rm -v "$PWD:/work" -w /work ghcr.io/5ym/sudachi input.txt -o output.txt
 ```
 
 ### その他のオプション
 
 ```sh
-docker run --rm ghcr.io/5ym/mecab --help
+docker run --rm ghcr.io/5ym/sudachi --help
 ```
 
 ## タグ
@@ -104,13 +104,13 @@ docker build --build-arg DICT_TYPE=full -t sudachi:full .
 docker run --rm -i \
   -v "$PWD/sudachi.json:/opt/sudachi/sudachi.json:ro" \
   -v "$PWD/user.dic:/opt/sudachi/user.dic:ro" \
-  ghcr.io/5ym/mecab -w
+  ghcr.io/5ym/sudachi -w
 ```
 
 ユーザー辞書のビルドはイメージ内の `sudachi ubuild` で行えます。
 
 ```sh
-docker run --rm -v "$PWD:/work" -w /work --entrypoint sudachi ghcr.io/5ym/mecab \
+docker run --rm -v "$PWD:/work" -w /work --entrypoint sudachi ghcr.io/5ym/sudachi \
   ubuild -s /opt/sudachi/system.dic -o user.dic user_dict.csv
 ```
 
