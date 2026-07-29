@@ -1,9 +1,0 @@
-version: '3.8'
-services:
-  mecab:
-    build: .
-    volumes:
-      - dic:/usr/local/lib/mecab/dic
-  
-volumes:
-  dic:
