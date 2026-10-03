@@ -73,7 +73,7 @@ docker run --rm ghcr.io/5ym/sudachi --help
 
 | タグ | 内容 |
 | --- | --- |
-| `latest` | master の最新ビルド |
+| `latest` | m の最新ビルド |
 | `dict-YYYYMMDD` | 同梱している SudachiDict のバージョン |
 | `sha-xxxxxxx` | コミット単位 |
 

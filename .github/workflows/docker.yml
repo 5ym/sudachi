@@ -2,7 +2,7 @@ name: Publish Docker image
 
 on:
   push:
-    branches: [master]
+    branches: [m]
     tags: ["v*"]
   pull_request:
   schedule:
