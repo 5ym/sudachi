@@ -17,6 +17,8 @@ env:
 jobs:
   prepare:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       dict-version: ${{ steps.dict.outputs.version }}
     steps:
